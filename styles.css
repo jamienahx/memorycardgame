@@ -1,0 +1,65 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: #060AB2;
+    display: flex;
+ 
+}
+
+.memory-game {
+    width:640px;
+    height:640px;
+    perspective:1000px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    border:2px solid lime;
+}
+
+.memory-card {
+    width:calc(25% - 10px);
+    height:calc(33.333% - 10px);
+    position: relative;
+    transform-style:preserve-3d;
+    transition: transform .5s;
+    margin:5px;
+    transform: scale(1);
+    
+}
+.memory-card:active {
+    transform: scale(.97);
+    transition: transform .2s;
+}
+
+.memory-card.flip{
+    transform:rotateY(180deg);/*Flip logic 2) entire memry card flips. Now BACK OF BACK-FACE is facing camera,
+                                FRONT OF FRONT-FACE is facing camera. BACK OF BACK-FACE is Hidden*/
+}
+
+.front-face,
+.back-face {
+    width:100%;
+    height:100%;
+    padding:20px;
+    position:absolute;
+    border:2px solid deeppink;
+    backface-visibility:hidden; /*Flip logic 1.5. This checks if the back of the element is facing the screen. If it is, hide it. */
+}
+
+
+.front-face{
+    transform: rotateY(180deg); /*Flip logic 1) on page load, FRONT of BACKFACE is facing the cam
+                                    BUT due to us applying 180deg rotation onto front-face the BACK OF FRONT-FACE is now facing the camera
+                                    but this is hidden because of backface-visibility:hidden*/
+}
+
+
+img{
+    width:100px;
+}
+
