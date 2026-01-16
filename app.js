@@ -18,11 +18,24 @@ function flipCard() {
         //set it back to false, ready for the next "first click"
         hasFlippedCard = false;
         secondCard = this;
+        checkForMatch()
     }
+}
 
-
+function checkForMatch(){
+    if(firstCard.dataset.framework===secondCard.dataset.framework) {
+        //disable click
+        //remove event listener
+        firstCard.removeEventListener('click',flipCard)
+        secondCard.removeEventListener('click',flipCard)
+    } else {
+        //unflip the card
+        setTimeout(()=>{
+        firstCard.classList.remove('flip');
+        secondCard.classList.remove('flip');
+    },1500);
     
-
+    }
 }
 
 
@@ -30,5 +43,5 @@ function flipCard() {
 //event listeners
 
 cards.forEach(function(card){
-    card.addEventListener('click',flipCard) 
+    card.addEventListener('click',flipCard)
 })
